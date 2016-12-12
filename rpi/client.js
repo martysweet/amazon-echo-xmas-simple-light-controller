@@ -130,12 +130,14 @@ function setPower(val, gpioDoneCallback){
     if (val == 0) {
         writeGPIO(PIN_POWER, false, function () {
             pCurrent = 0;
+            outputDeviceSummary();
             gpioDoneCallback();
         });
     }else{
         // Turn on (Hold in the relay)
         writeGPIO(PIN_POWER, true, function () {
             pCurrent = 1;
+            outputDeviceSummary();
             gpioDoneCallback();
     });
     }
