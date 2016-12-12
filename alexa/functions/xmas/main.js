@@ -171,7 +171,7 @@ function getModeInRange(x){
  * to have an array of responses to add variety.
  */
 function successfulChange(response){
-    response.ask('Operation complete...');
+    response.tell('Operation complete...');
 }
 
 /**
