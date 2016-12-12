@@ -99,7 +99,7 @@ function changeDevicePowerState(response, state){
     var callback;
     var value;
     if(state == 'ON') {
-        callback = function(){response.ask(message);};
+        callback = function(){response.tell(message);};
         value = 1;
     }else{
         callback = function(){response.tell(message);};
@@ -175,7 +175,7 @@ function getModeInRange(x){
  * to have an array of responses to add variety.
  */
 function successfulChange(response){
-    response.tell('Operation complete...');
+    response.tell('Merry Christmas!');
 }
 
 /**
