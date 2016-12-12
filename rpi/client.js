@@ -152,10 +152,15 @@ function setPower(val, gpioDoneCallback){
  */
 function setMode(inputValue, gpioDoneCallback){
     if(0 <= inputValue && mUpperBound >= inputValue){
-        changePhysicalPushSwitchValue(PIN_MODE, mCurrent, mUpperBound, inputValue, function(){
-            mCurrent = inputValue;
+        if(pCurrent == 1) {
+            changePhysicalPushSwitchValue(PIN_MODE, mCurrent, mUpperBound, inputValue, function () {
+                mCurrent = inputValue;
+                gpioDoneCallback();
+            });
+        }else{
+            // Skipping as pCurrent is OFF, so no need to change mode
             gpioDoneCallback();
-        });
+        }
     }else{
         console.log("Mode: Invalid input value: " + inputValue);
         gpioDoneCallback();

@@ -106,7 +106,7 @@ function changeDevicePowerState(response, state){
         value = 0;
     }
     // Send message
-    updateIotShadow({"power": value, "mode": 0}, callback);
+    updateIotShadow({"power": value}, callback);
 }
 
 /**
