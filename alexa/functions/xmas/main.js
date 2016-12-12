@@ -127,6 +127,10 @@ function changeMode(response, intent){
         case 'last':
             value = decreaseMode();
             break;
+        case '0': case '1': case '2': case '3': case '4':
+        case '5': case '6': case '7':
+            value = desired;
+            break;
         default:
             console.log("Unhandled Mode Request: " + desired);
             break;
@@ -197,4 +201,3 @@ exports.handler = function (event, context) {
         bob.execute(event, context);
     });
 };
-
