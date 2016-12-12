@@ -124,43 +124,20 @@ function updateShadow(){
 /**
  * Set the power to the correct value
  * @param val
+ * @param gpioDoneCallback
  */
 function setPower(val, gpioDoneCallback){
     if (val == 0) {
-        ensureDeviceOff(gpioDoneCallback);
+        writeGPIO(PIN_POWER, false, function () {
+            pCurrent = 0;
+            gpioDoneCallback();
+        });
     }else{
-        ensureDeviceOn(gpioDoneCallback);
-    }
-}
-
-/**
- * Ensure the device is turned on
- */
-function ensureDeviceOn(gpioDoneCallback){
-    if(pCurrent == 0){
-        pulseGPIOPin(PIN_POWER, 1, function(){
+        // Turn on (Hold in the relay)
+        writeGPIO(PIN_POWER, true, function () {
             pCurrent = 1;
             gpioDoneCallback();
-        });
-    }else{
-        gpioDoneCallback()
-    }
-}
-
-/**
- * Ensure the device is turned off, for the mode to 0 (as this is what will happen).
- * Assume the Alexa Skill will do the same otherwise the Shadows will become out of sync.
- */
-function ensureDeviceOff(gpioDoneCallback){
-    if(pCurrent == 1){
-        pulseGPIOPin(PIN_POWER, 1, function(){
-            pCurrent = 0;
-            // Update the values as the device is now off
-            mCurrent = 0;
-            gpioDoneCallback();
-        });
-    }else{
-        gpioDoneCallback();
+    });
     }
 }
 
@@ -201,7 +178,8 @@ function changePhysicalPushSwitchValue(pin, current, upperBound, desired, succes
     }else if(desired == 0) {
         // Need a long pause to turn the shadow off
         // TODO: We shouldn't need a long pause with this design
-        pulseGPIOPin(pin, 1, successCallback);
+//        pulseGPIOPin(pin, 1, successCallback);
+        console.log("desired=0, what should we be doing?");
     }else if(desired > current){
         // We can do a direct pulse, no need to loop
        // ensureDeviceOn();
