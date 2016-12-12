@@ -175,11 +175,6 @@ function changePhysicalPushSwitchValue(pin, current, upperBound, desired, succes
         // No need to change
         console.log("No need to change for pin: " + pin);
         successCallback();
-    }else if(desired == 0) {
-        // Need a long pause to turn the shadow off
-        // TODO: We shouldn't need a long pause with this design
-//        pulseGPIOPin(pin, 1, successCallback);
-        console.log("desired=0, what should we be doing?");
     }else if(desired > current){
         // We can do a direct pulse, no need to loop
        // ensureDeviceOn();
