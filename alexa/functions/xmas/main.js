@@ -95,16 +95,31 @@ Xmas.prototype.intentHandlers = {
  * @param state
  */
 function changeDevicePowerState(response, state){
-    var message = 'Turning Xmas ' + state;
+
     var callback;
     var value;
+    var currentValue = currentDesired['power'];
+
+    // If we are asking it to be off, and it already is, assume Alexa has
+    // heard it wrong, and turn the device on
+    // NOTE: YOU MAY WANT TO DISABLE THIS HACK
+    if(state == 'OFF' && currentValue == 0){
+        state = 'ON';
+    }
+
+    // Form message
+    var message = 'Turning the lights ' + state;
+
+    // Set the value
     if(state == 'ON') {
-        callback = function(){response.tell(message);};
         value = 1;
     }else{
-        callback = function(){response.tell(message);};
         value = 0;
     }
+
+    // Set the callback
+    callback = function(){response.tell(message);};
+
     // Send message
     updateIotShadow({"power": value}, callback);
 }
