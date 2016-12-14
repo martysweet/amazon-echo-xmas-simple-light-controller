@@ -133,8 +133,29 @@ function changeMode(response, intent){
     var desired = intent['slots']['LightMode']['value'];
     var value = 0;
     switch(desired){
-        case 'slowly':
+        case 'combination':
             value = 0;
+            break;
+        case 'steady on':
+            value = 1;
+            break;
+        case 'in wave':
+            value = 2;
+            break;
+        case 'twin light chasing':
+            value = 3;
+            break;
+        case 'twinkle flashing':
+            value = 4;
+            break;
+        case 'slow glow':
+            value = 5;
+            break;
+        case 'stepping on':
+            value = 6;
+            break;
+        case 'slow fade':
+            value = 7;
             break;
         case 'next':
             value = increaseMode();
@@ -142,8 +163,8 @@ function changeMode(response, intent){
         case 'last':
             value = decreaseMode();
             break;
-        case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7':
+        case '0': case '1': case '2': case '3':
+        case '4': case '5': case '6': case '7':
             value = desired;
             break;
         default:
