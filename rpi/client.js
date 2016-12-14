@@ -154,7 +154,7 @@ function setPower(val, gpioDoneCallback){
 function setMode(inputValue, gpioDoneCallback){
     if(0 <= inputValue && mUpperBound >= inputValue){
         if(pCurrent == 1) {
-            changePhysicalPushSwitchValue(PIN_MODE, mCurrent, mUpperBound, inputValue, function () {
+            changePhysicalPushSwitchValue(PIN_MODE, mCurrent, mUpperBound, parseInt(inputValue), function () {
                 mCurrent = inputValue;
                 gpioDoneCallback();
             });
@@ -190,7 +190,7 @@ function changePhysicalPushSwitchValue(pin, current, upperBound, desired, succes
     }else{
         // Need to loop using upperBound
         //ensureDeviceOn();
-        pulseGPIOPin(pin, ((upperBound - current) + desired), successCallback);
+        pulseGPIOPin(pin, ((upperBound - current) + desired + 1), successCallback);
     }
 }
 
