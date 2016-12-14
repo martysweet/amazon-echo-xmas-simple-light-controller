@@ -21,6 +21,7 @@ var PIN_MODE = 13;
 
 /** Pulse time must be long enough for the relay to engage and the controller to recognise the switch press. **/
 var PULSE_TIME_MS = 200;
+var BETWEEN_EVENT_WAIT_DURATION = 100;
 
 /** Setup pins **/
 if(GPIOEnabled) {
@@ -248,8 +249,10 @@ function outputOnGPIODuration(pin, duration, finishedCallback) {
             }
         ],
         function (err, result) {
-            console.log("On/off cycle complete");
-            finishedCallback()
+            setTimeout(function () {
+                console.log("On/off cycle complete");
+                finishedCallback()
+            }, BETWEEN_EVENT_WAIT_DURATION);
         });
 }
 
