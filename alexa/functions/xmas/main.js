@@ -181,7 +181,11 @@ function changeMode(response, intent){
  */
 function decreaseMode(){
     var x = currentDesired["mode"] - 1;
-    return getModeInRange(x);
+    if(x < 0){
+        return UPPER_MODE_LIMIT;
+    }else{
+        return x;
+    }
 }
 
 /**
@@ -189,20 +193,10 @@ function decreaseMode(){
  */
 function increaseMode(){
     var x = currentDesired["mode"] + 1;
-    return getModeInRange(x);
-}
-
-/**
- * Ensure the mode is within the valid MODE range
- * @param x
- * @returns {*}
- */
-function getModeInRange(x){
-    if(x >= 0 && x <= UPPER_MODE_LIMIT){
-        return x
+    if(x > UPPER_MODE_LIMIT){
+        return 0;
     }else{
-        // Maybe have nicer feedback if this is the case
-        return currentDesired["mode"];
+        return x;
     }
 }
 
