@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "intent": "TurnDeviceOn"
+    },
+    {
+      "intent": "TurnDeviceOff"
+    },
+    {
+      "intent": "ChangeMode",
+      "slots": [
+        {
+          "name": "LightMode",
+          "type": "LIST_OF_LIGHT_MODES"
+        }
+      ]
+    }
+  ]
+}
