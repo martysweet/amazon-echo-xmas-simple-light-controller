@@ -20,7 +20,7 @@ var mUpperBound = 7;
 var PIN_MODE = 13;
 
 /** Pulse time must be long enough for the relay to engage and the controller to recognise the switch press. **/
-var PULSE_TIME_MS = 50;
+var PULSE_TIME_MS = 200;
 
 /** Setup pins **/
 if(GPIOEnabled) {
