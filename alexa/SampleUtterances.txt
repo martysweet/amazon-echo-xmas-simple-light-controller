@@ -5,3 +5,4 @@ ChangeMode mode {LightMode}
 ChangeMode change the mode to {LightMode}
 ChangeMode for mode {LightMode}
 ChangeMode for {LightMode}
+ChangeMode {LightMode} mode
